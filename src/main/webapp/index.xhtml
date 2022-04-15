@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"> 
+
+<h:head>
+	<title>Calcul IMC</title>
+	<style>
+		#panel {
+			margin: auto;
+			width: 60%;
+			margin-top: 40px;
+		}
+	</style>
+</h:head> 
+<body> 
+
+	<h:form>
+		<p:panelGrid columns="2" style="margin: auto;width: 60%;margin-top: 40px;">
+			<f:facet name="header">
+				Calcul de l'IMC
+			</f:facet>
+			
+			<p:outputLabel value="Poids : " for="poids"/>
+			<p:inputText value="#{iMCBeans.poids}" id="poids"/>
+			
+			<p:outputLabel value="Taille : " for="taille"/>
+			<p:inputText value="#{iMCBeans.taille}" id="taille"/>
+			
+			<p:outputLabel value="Unite : " for="unit"/>
+			<p:selectOneRadio value="#{iMCBeans.unite}">
+				<f:selectItems value="#{iMCBeans.units}" id="unit"/>
+			</p:selectOneRadio>
+			
+			<p:commandButton value="Calculer" action="#{iMCBeans.calculer()}" ajax="false"/>
+			<p:commandButton value="Intialiser" actionListener="#{iMCBeans.init()}" ajax="false"/>
+			
+			
+			<p:selectBooleanCheckbox value="#{iMCBeans.interpretation}"/>
+			<p:outputLabel value="Afficher interpretation"/>
+			
+			<p:outputLabel value="Resultat : "/>
+			<p:outputLabel value="#{iMCBeans.imc}"/>
+			
+			<p:outputLabel value="Interpretation : "/>
+			<p:outputLabel value="#{iMCBeans.inter}"/>
+			
+		</p:panelGrid>
+	</h:form>
+</body> 
+</html>
